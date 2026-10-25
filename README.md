@@ -63,7 +63,7 @@ Cada layer é um processo AHK separado. A Layer 0 detecta se uma layer está rod
 
 ## Layer 0 — Core
 
-Arquivo: [`Layer0.ahk`](Layer0.ahk) · Ícone de bandeja: `Inquisition.ico`
+Arquivo: [`Layer0.ahk`](Layer0.ahk)
 
 ### Hotkeys globais
 
@@ -163,7 +163,7 @@ Detalhes de comportamento:
 
 Arquivo: [`cheatsheet.ahk`](cheatsheet.ahk)
 
-Overlay minimalista (tema escuro, `Consolas`) sempre no topo, exibido no canto superior direito da tela, com o resumo de todos os atalhos das Layers 0, 5 e 6. Feche com `Esc`. Versão embutida também dentro do `Chaos.exe`.
+Overlay minimalista (tema escuro, `Consolas`) sempre no topo, exibido no canto superior direito da tela, com o resumo de todos os atalhos das Layers 0, 5 e 6. Feche com `Esc`.
 
 ---
 
@@ -172,10 +172,8 @@ Overlay minimalista (tema escuro, `Consolas`) sempre no topo, exibido no canto s
 | Artefato | Como gerar | Observação |
 |---|---|---|
 | `Layer5.exe`, `Layer6.exe` | [Ahk2Exe](https://www.autohotkey.com/boards/viewtopic.php?t=78209) com base v2 | Empacota os scripts `.ahk` individuais |
-| `Layer0Launcher.exe` | `build.bat` | Requer **MSVC Build Tools 2019+** (`vcvars64.bat`) |
 | `Chaos.exe` | `build_release.bat` | Usa Ahk2Exe com base `AutoHotkey64.exe` v2.0.19; embute ícones e a DLL via `FileInstall` |
 
-O `Layer0Launcher` (fonte: `Layer0Launcher.c`) tem uma única função: executar a Layer 0 com privilégios de administrador **sem prompt de UAC a cada uso**. Na primeira execução ele se auto-eleva e registra a tarefa agendada `Layer0_Admin` com `RunLevel = HIGHEST`; a partir daí, apenas dispara a tarefa — e todo processo filho herda o token de admin.
 
 ---
 
