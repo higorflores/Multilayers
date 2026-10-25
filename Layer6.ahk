@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 hVDA := DllCall("LoadLibrary", "Str", A_ScriptDir . "\VirtualDesktopAccessor.dll", "Ptr")
-TraySetIcon "Ultramarines.ico" ; You can choose your own icon here
+TraySetIcon "Layer6.ico" ; You can choose your own icon here
 
 ; Disable win key's default behavior (like opening the Start menu)
 ~LWin::Send "{Blind}{vkE8}"
