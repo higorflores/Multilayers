@@ -2,7 +2,9 @@
 
 > **AutoHotkey v2** · Windows 10/11 · desktops virtuais, gerenciamento de janelas estilo KDE e um launcher de camadas tudo-em-um
 
-# Download: https://github.com/higorflores/Multilayers/releases/download/v0.1/Release.zip
+# Download pré-compilado do ahk (não há necessidade de instalar o ahk v2: https://github.com/higorflores/Multilayers/releases/download/v0.1/Release.zip
+
+
 
 O **Chaos** é um conjunto de scripts AutoHotkey v2 organizados em **camadas (layers)**. Uma camada principal (**Layer 0**) fica sempre ativa e transforma o `CapsLock` em uma tecla modificadora, permitindo ligar e desligar módulos independentes sob demanda — como se fossem "modos" do teclado.
 
