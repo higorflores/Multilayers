@@ -12,8 +12,7 @@ Este documento cobre as camadas centrais do projeto:
 | **Layer 5** | `Layer5.ahk` | Mover/redimensionar janelas estilo KDE (Alt + mouse) |
 | **Layer 6** | `Layer6.ahk` | Desktops virtuais + integração WSL |
 
-Complementos: `cheatsheet.ahk` (overlay com todos os atalhos), `Layer0Launcher.c`/`build.bat` (elevação sem prompt de UAC) e `Chaos.ahk`/`build_release.bat` (pacote único com tudo embutido).
-
+Complementos: `cheatsheet.ahk` (overlay com todos os atalhos)
 ---
 
 ## Requisitos
@@ -29,7 +28,7 @@ Complementos: `cheatsheet.ahk` (overlay com todos os atalhos), `Layer0Launcher.c
 
 1. Instale o AutoHotkey v2.
 2. Clone ou baixe este repositório.
-3. Execute **`Layer0.ahk`** (ou `Layer0.exe` / `Layer0Launcher.exe`). Só o Layer 0 precisa ficar rodando — as demais camadas são ligadas sob demanda por ele.
+3. Execute **`Layer0.ahk`** (ou `Layer0.exe`). Só o Layer 0 precisa ficar rodando — as demais camadas são ligadas sob demanda por ele.
 4. Ative as camadas:
    - `CapsLock + S` — liga a **Layer 5** (KDE Move)
    - `CapsLock + D` — liga a **Layer 6** (Desktops virtuais)
@@ -49,8 +48,7 @@ Layer 0 (sempre ativo — o "kernel")
 │
 ├── [S] Layer 5 ... KDE Move ......... mover/redimensionar janelas com Alt+mouse
 ├── [D] Layer 6 ... Desktops ......... desktops virtuais + WSL
-├── [Q/W/E/A] ... layers externas .... Layer1, midi_fader, Layer3, Layer4
-├── [Z/C] ....... layers externas .... Layer7, Index (independentes)
+├── [Q/W/E/A] ... layers externas .... Layer1, Layer2 , Layer3, Layer4
 │
 └── [1..0/-/=] . F13–F24 ............ teclas de função virtuais
 ```
@@ -80,10 +78,10 @@ Arquivo: [`Layer0.ahk`](Layer0.ahk) · Ícone de bandeja: `Inquisition.ico`
 | Tecla | Alvo | Flags |
 |---|---|---|
 | `Q` | `Layer1.ahk` | `TOGGLE + EXCLUSIVE` |
-| `W` | `Toolbox\Bin-Sound\midi_fader.py` | `TOGGLE + EXCLUSIVE` |
-| `E` | `Layer3.py` | `TOGGLE + EXCLUSIVE` |
-| `A` | `Layer4.py` | `TOGGLE + EXCLUSIVE` |
-| `S` | `Layer5.exe` — KDE Move | `TOGGLE + PERSISTENT` |
+| `W` | `Layer1.ahk` | `TOGGLE + EXCLUSIVE` |
+| `E` | `Layer3.ahk` | `TOGGLE + EXCLUSIVE` |
+| `A` | `Layer4.ahk` | `TOGGLE + EXCLUSIVE` |
+| `S` | `Layer5.ahk` — KDE Move | `TOGGLE + PERSISTENT` |
 | `D` | `Layer6.ahk` — Desktops | `TOGGLE + PERSISTENT` |
 | `Z` | `Layer7.ahk` — independente | `TOGGLE + PERSISTENT` |
 | `C` | `Toolbox\Index.py` | `TOGGLE + PERSISTENT` |
@@ -117,6 +115,8 @@ Adaptação para AutoHotkey v2 do clássico *"Easy Window Dragging — KDE style
 | `Alt, Alt` + clique direito | **Maximiza / restaura** a janela |
 | `Alt, Alt` + clique do meio | **Fecha** a janela |
 
+Este foi copiado e modificado para ahk 2.0, creditos a https://github.com/pfisterer/autohotkey-scripts/blob/master/kde-style-window-move.ahk
+
 Detalhes de comportamento:
 
 - **Duplo-Alt**: pressione e solte `Alt` duas vezes seguidas (intervalo < 400 ms). Mantenha a segunda pressão até clicar. Depois da ação, o estado é resetado.
@@ -148,7 +148,7 @@ Detalhes de comportamento:
 - **Drag aware:** se você estiver com o botão esquerdo do mouse pressionado ao apertar `Win + N`, a janela ativa é movida para o desktop de destino junto com a troca — útil para "levar" janelas durante um arrasto.
 - **Validação:** se o desktop destino não existir, exibe um aviso (`Desktop N não existe! (total: M)`) em vez de falhar silenciosamente.
 - **WSL:** com o Explorer ativo, o terminal abre na pasta atual (ou na pasta selecionada, se o item selecionado for um diretório); nos demais casos, abre no diretório padrão do usuário WSL.
-  - O comando usado é `wsl.exe -d archlinux -u higor --cd "<pasta>"` — **troque a distro e o usuário** no script (`#Enter` em `Layer6.ahk`) para a sua configuração.
+  - O comando usado é `wsl.exe -d archlinux -u user --cd "<pasta>"` — **troque a distro e o usuário** no script (`#Enter` em `Layer6.ahk`) para a sua configuração.
 - Há um gancho preparado (comentado) para abrir o **Everything** com `Win + S`, desativado por padrão para não conflitar com a busca do Windows.
 
 > **Nota sobre a DLL:** o `VirtualDesktopAccessor.dll` depende de detalhes internos do Windows que mudam entre versões/builds. Se a troca de desktops parar de funcionar após uma atualização grande do Windows, substitua a DLL por uma versão atualizada ([Ciantic/VirtualDesktopAccessor](https://github.com/Ciantic/VirtualDesktopAccessor)).
@@ -183,14 +183,8 @@ O `Layer0Launcher` (fonte: `Layer0Launcher.c`) tem uma única função: executar
 ├── Layer5.ahk                  # KDE Move: mover/redimensionar com Alt+mouse
 ├── Layer6.ahk                  # Desktops virtuais + WSL
 ├── cheatsheet.ahk              # Overlay de atalhos
-├── VirtualDesktopAccessor.dll  # Dependência da Layer 6
-├── Layer0Launcher.c            # Launcher em C (elevação via Scheduled Task)
-├── build.bat                   # Build do launcher (MSVC)
-├── Chaos.ahk                   # Pacote único (launcher + L0 + L5 + L6 + cheatsheet)
-├── build_release.bat           # Build do Chaos.exe (Ahk2Exe)
-├── Inquisition.ico             # Ícone da Layer 0
-├── Ultramarines.ico            # Ícone da Layer 6
-└── Chaos.ico                   # Ícone do pacote único
+└── VirtualDesktopAccessor.dll  # Dependência da Layer 6
+
 ```
 
 ---
