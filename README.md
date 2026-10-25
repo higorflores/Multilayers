@@ -186,7 +186,7 @@ O `Layer0Launcher` (fonte: `Layer0Launcher.c`) tem uma única função: executar
 └── VirtualDesktopAccessor.dll  # Dependência da Layer 6
 
 ```
-
+VirtualDesktopAccessor.dll foi copiado de https://github.com/Ciantic/VirtualDesktopAccessor
 ---
 
 ## Avisos e limitações
