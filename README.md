@@ -2,7 +2,7 @@
 
 > **AutoHotkey v2** · Windows 10/11 · desktops virtuais, gerenciamento de janelas estilo KDE e um launcher de camadas tudo-em-um
 
-# Download pré-compilado do ahk (não há necessidade de instalar o ahk v2: https://github.com/higorflores/Multilayers/releases/download/v0.1/Release.zip
+# Download pré-compilado do ahk (não há necessidade de instalar o ahk v2): https://github.com/higorflores/Multilayers/releases/download/v0.1/Release.zip
 
 
 
