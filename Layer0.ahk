@@ -4,7 +4,7 @@
 
 
 
-TraySetIcon "Inquisition.ico"
+TraySetIcon "Layer0.ico"
 
 Enter::NumpadEnter
 !+Space::Send "{Media_Play_Pause}"
