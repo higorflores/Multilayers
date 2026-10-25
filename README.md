@@ -10,11 +10,11 @@ O **Chaos** é um conjunto de scripts AutoHotkey v2 organizados em **camadas (la
 
 Este documento cobre as camadas centrais do projeto:
 
-| Camada | Arquivo | Função |
-|---|---|---|
+| Camada      | Arquivo      | Função                                                         |
+| ----------- | ------------ | -------------------------------------------------------------- |
 | **Layer 0** | `Layer0.ahk` | Core: gerenciador de camadas, hotkeys globais e teclas F13–F24 |
-| **Layer 5** | `Layer5.ahk` | Mover/redimensionar janelas estilo KDE (Alt + mouse) |
-| **Layer 6** | `Layer6.ahk` | Desktops virtuais + integração WSL |
+| **Layer 5** | `Layer5.ahk` | Mover/redimensionar janelas estilo KDE (Alt + mouse)           |
+| **Layer 6** | `Layer6.ahk` | Desktops virtuais + integração WSL                             |
 
 Complementos: `cheatsheet.ahk` (overlay com todos os atalhos)
 ---
@@ -67,28 +67,28 @@ Arquivo: [`Layer0.ahk`](Layer0.ahk)
 
 ### Hotkeys globais
 
-| Atalho | Ação |
-|---|---|
-| `Enter` | Remapeado para `NumpadEnter` |
-| `Alt + Shift + Espaço` | Play / Pause da mídia |
-| `CapsLock + Ç` | Abre o painel de som (`mmsys.cpl`) |
+| Atalho                       | Ação                                            |
+| ---------------------------- | ----------------------------------------------- |
+| `Enter`                      | Remapeado para `NumpadEnter`                    |
+| `Alt + Shift + Espaço`       | Play / Pause da mídia                           |
+| `CapsLock + Ç`               | Abre o painel de som (`mmsys.cpl`)              |
 | `CapsLock + 1 … 0`, `-`, `=` | Envia `F13` … `F24` (teclas de função virtuais) |
-| `CapsLock + Q/W/E/A/S/D/Z/C` | Liga/desliga a layer correspondente |
+| `CapsLock + Q/W/E/A/S/D/Z/C` | Liga/desliga a layer correspondente             |
 
 > O CapsLock continua funcionando normalmente quando pressionado sozinho — ele só vira modificador em combinação com outras teclas.
 
 ### Mapa de camadas
 
-| Tecla | Alvo | Flags |
-|---|---|---|
-| `Q` | `Layer1.ahk` | `TOGGLE + EXCLUSIVE` |
-| `W` | `Layer1.ahk` | `TOGGLE + EXCLUSIVE` |
-| `E` | `Layer3.ahk` | `TOGGLE + EXCLUSIVE` |
-| `A` | `Layer4.ahk` | `TOGGLE + EXCLUSIVE` |
-| `S` | `Layer5.ahk` — KDE Move | `TOGGLE + PERSISTENT` |
-| `D` | `Layer6.ahk` — Desktops | `TOGGLE + PERSISTENT` |
-| `Z` | `Layer7.ahk` — independente | `TOGGLE + PERSISTENT` |
-| `C` | `Toolbox\Index.py` | `TOGGLE + PERSISTENT` |
+| Tecla | Alvo                        | Flags                 |
+| ----- | --------------------------- | --------------------- |
+| `Q`   | `Layer1.ahk`                | `TOGGLE + EXCLUSIVE`  |
+| `W`   | `Layer1.ahk`                | `TOGGLE + EXCLUSIVE`  |
+| `E`   | `Layer3.ahk`                | `TOGGLE + EXCLUSIVE`  |
+| `A`   | `Layer4.ahk`                | `TOGGLE + EXCLUSIVE`  |
+| `S`   | `Layer5.ahk` — KDE Move     | `TOGGLE + PERSISTENT` |
+| `D`   | `Layer6.ahk` — Desktops     | `TOGGLE + PERSISTENT` |
+| `Z`   | `Layer7.ahk` — independente | `TOGGLE + PERSISTENT` |
+| `C`   | `Toolbox\Index.py`          | `TOGGLE + PERSISTENT` |
 
 > Os alvos de `Q`, `W`, `E`, `A`, `Z` e `C` são scripts externos a este pacote (layers auxiliares de outros projetos). Ajuste os caminhos no `Map()` no topo do script conforme sua instalação.
 
@@ -107,7 +107,7 @@ Na prática: `Q/W/E/A` competem entre si (ligar uma desliga as outras), enquanto
 
 ## Layer 5 — KDE Move
 
-Arquivo: [`Layer5.ahk`](Layer5.ahk) · Ativação: `CapsLock + S`
+Arquivo: [`Layer5.ahk`](Layer5.ahk) · Ativação: `CapsLock + S`  Ícone de bandeja: `Layer5.ico` (salve o arquivo com este nome e será lido automaticamente)
 
 Adaptação para AutoHotkey v2 do clássico *"Easy Window Dragging — KDE style"* (por Jonny, do fórum do AutoHotkey). Permite mover e redimensionar janelas clicando **em qualquer ponto** delas, sem mirar na barra de título ou na borda.
 
@@ -133,7 +133,7 @@ Detalhes de comportamento:
 
 ## Layer 6 — Desktops Virtuais
 
-Arquivo: [`Layer6.ahk`](Layer6.ahk) · Ativação: `CapsLock + D` · Ícone de bandeja: `Ultramarines.ico`
+Arquivo: [`Layer6.ahk`](Layer6.ahk) · Ativação: `CapsLock + D` · Ícone de bandeja: `Layer6.ico` (salve o arquivo com este nome e será lido automaticamente)
 
 Gerenciamento de desktops virtuais do Windows via **`VirtualDesktopAccessor.dll`** (carregada com `LoadLibrary` na inicialização do script), com comportamentos inspirados em gerenciadores de janelas em tiling como o **Hyprland**.
 
@@ -167,16 +167,6 @@ Overlay minimalista (tema escuro, `Consolas`) sempre no topo, exibido no canto s
 
 ---
 
-## Compilação
-
-| Artefato | Como gerar | Observação |
-|---|---|---|
-| `Layer5.exe`, `Layer6.exe` | [Ahk2Exe](https://www.autohotkey.com/boards/viewtopic.php?t=78209) com base v2 | Empacota os scripts `.ahk` individuais |
-| `Chaos.exe` | `build_release.bat` | Usa Ahk2Exe com base `AutoHotkey64.exe` v2.0.19; embute ícones e a DLL via `FileInstall` |
-
-
----
-
 ## Estrutura do projeto
 
 ```
@@ -196,7 +186,7 @@ VirtualDesktopAccessor.dll foi copiado de https://github.com/Ciantic/VirtualDesk
 - Com a **Layer 6 ativa, a tecla `Win` sozinha deixa de abrir o menu Iniciar**, e `Win + D` é sobrescrito (vira `Ctrl + Esc`). É o comportamento pretendido (estilo tiling WM), mas desligue a layer (`CapsLock + D`) se precisar do padrão do Windows.
 - Layers marcadas como `EXCLUSIVE` são encerradas com `ProcessClose` (fechamento forçado) ao dar lugar a outra exclusiva.
 - Os caminhos das layers externas (`Layer1.ahk`, `Layer3.py`, `Toolbox\...` etc.) são específicos da instalação original — edite o `Map()` no topo da `Layer0.ahk` para apontar para os seus scripts, do contrário os atalhos `Q/W/E/A/Z/C` gerarão erro de execução.
-- O atalho `CapsLock + Ç` pressupõe **layout ABNT** (teclado brasileiro).
+- O atalho `CapsLock + Ç` pressupõe **layout ABNT2** (teclado brasileiro).
 - Testado com AutoHotkey v2.0; versões antigas (v1.x) não são compatíveis.
 
 ---
