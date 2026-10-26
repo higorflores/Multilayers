@@ -1,4 +1,4 @@
-# Chaos — Sistema de Camadas de Hotkeys para Windows
+# Sistema de Camadas de Hotkeys para Windows
 
 > **AutoHotkey v2** · Windows 10/11 · desktops virtuais, gerenciamento de janelas estilo KDE e um launcher de camadas tudo-em-um
 
@@ -6,7 +6,7 @@
 
 
 
-O **Chaos** é um conjunto de scripts AutoHotkey v2 organizados em **camadas (layers)**. Uma camada principal (**Layer 0**) fica sempre ativa e transforma o `CapsLock` em uma tecla modificadora, permitindo ligar e desligar módulos independentes sob demanda — como se fossem "modos" do teclado.
+O **Multilayer** é um conjunto de scripts AutoHotkey v2 organizados em **camadas (layers)**. Uma camada principal (**Layer 0**) fica sempre ativa e transforma o `CapsLock` em uma tecla modificadora, permitindo ligar e desligar módulos independentes sob demanda — como se fossem "modos" do teclado.
 
 Este documento cobre as camadas centrais do projeto:
 
@@ -39,7 +39,6 @@ Complementos: `cheatsheet.ahk` (overlay com todos os atalhos)
 
 **Iniciar com o Windows:** coloque um atalho em `shell:startup`, ou use o **Launcher** — na primeira execução ele se eleva uma única vez (UAC) e registra uma *Scheduled Task* com `RunLevel = HIGHEST`; nas execuções seguintes a Layer 0 roda como administrador **sem novo prompt de UAC**.
 
-Alternativa: **`Chaos.exe`** empacota launcher + Layer 0 + Layer 5 + Layer 6 + cheatsheet em um único executável.
 
 ---
 
